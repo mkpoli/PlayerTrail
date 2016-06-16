@@ -18,8 +18,8 @@ new bool:g_bTrail[MAXPLAYERS + 1];
 
 public void OnPluginStart()
 {
-	RegConsoleCmds();
-	RegServerConVars();
+	CreateConVar("sm_playertrail_version", VERSION, "Simple PlayerTrail", FCVAR_PLUGIN|FCVAR_NOTIFY|FCVAR_DONTRECORD);
+	RegConsoleCmd("sm_trail", Client_PlayerTrail, "[PlayerTrail] on/off - showing the trajectory of the movement of player.");
 }
 
 public void OnMapStart()
@@ -53,15 +53,6 @@ public void DrawPreStrafeBeam(client, Float:origin[3])
 public OnPlayerPutInServer(client)
 {
 	SetClientDefaults(client);
-}
-
-public RegConsoleCmds()
-{
-	RegConsoleCmd("sm_trail", Client_PlayerTrail, "[PlayerTrail] on/off - showing the trajectory of the movement of player.");
-}
-
-public RegServerConVars()
-{
 }
 
 public SetClientDefaults(client)
